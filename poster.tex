@@ -1,24 +1,35 @@
 \documentclass[25pt, a0paper, landscape, cmyk]{tikzposter}
 \usepackage{hyperref}
+\usepackage{floatflt}
 \tikzposterlatexaffectionproofoff
 \title{Edit Conflicts, Offline Contributions, and Tor: Oh, My!}
-\author{C. Scott Ananian / cananian@wikimedia.org / \texttt{[[User:cscott]]}}
-\institute{Wikimedia Foundation}
+\author{C. Scott Ananian \texttt{[[User:cscott]]}
+  <cananian@wikimedia.org> (Wikimedia Foundation)}
+%\institute{Wikimedia Foundation}
 %\usetheme{Autumn}\usecolorstyle[colorPalette=BrownBlueOrange]{Britain}
 %\usetheme{Envelope}
 \usetheme{Rays}\usecolorstyle[colorOne=orange,colorTwo=green]{Australia}
+\useinnerblockstyle{Table}
+% remove space taken up by \institute
+\settitle{ \centering \vbox{
+\centering
+\color{titlefgcolor} {\bfseries \Huge \sc \@title \par}
+\vspace*{1em}
+{\huge \@author}
+}}
 
 % Work around tikzposter conflict with hyperref
 % https://tex.stackexchange.com/questions/254257/tikzposter-and-doi-package-conflict
 \def\HyperFirstAtBeginDocument#1{#1}
-
+% another workaround, sigh.  This time for floatflt
+\edef\oldeverypar{\the\everypar}
 \begin{document}\maketitle[width=75cm]%[titletextscale=1,width=75cm]
 \begin{columns}
   \column{0.33}
   \block{Editing Conflicts}{%
 
     \begin{tikzfigure}
-      \includegraphics[height=12.5cm]{conflict-silhouette.eps}
+      \includegraphics[height=9.5cm]{conflict-silhouette.eps}
     \end{tikzfigure}
 
     A new editor makes a contribution. It is immediately reverted and
@@ -44,7 +55,7 @@
   \block{Offline Contributions}{%
 
     \begin{tikzfigure}
-      \includegraphics[height=20cm]{Bucolico-full.jpg}
+      \includegraphics[height=17cm]{Bucolico-full.jpg}
     \end{tikzfigure}
 
     A Peruvian school-child finds no information in Wikipedia about
@@ -56,7 +67,7 @@
   \block{Tor!}{%
 
     \begin{tikzfigure}
-      \includegraphics[height=20cm]{censored-nospeaking.eps}
+      \includegraphics[height=17cm]{censored-nospeaking.eps}
     \end{tikzfigure}
 
     A user in a repressive regime can only safely access Wikipedia by
@@ -68,23 +79,58 @@
 \block{}{\centering\Huge\it Oh, my!}
 \begin{columns}
   \column{0.33}
-  \block{Fork-Merge}{%
+  \newlength{\myfigwidth}
+  \newlength{\mw}
+  \setlength{\myfigwidth}{11cm}
+  \setlength{\mw}{\colwidth}
+  \addtolength{\mw}{-3cm}
+  \addtolength{\mw}{-\myfigwidth}
 
-    With a fork-and-merge model new users whose content isn't
-    immediately merged find it preserved on their fork for revision
-    and re-submission, reducing their sense of rejection and
-    loss. Offline users who are forced to work on an out-of-date copy
-    and those using the draft namespace can use the same improved
-    tools when their contributions are brought to merge. During online
-    edits we can auto-save to a fork, and if conflicts are found we
-    can safely defer resolving them without losing work.
+  \block{Linear Edit Model}{
+    \begin{minipage}[b]{\mw}
+    In today's MediaWiki, edits are only made to the most recent
+    revision of an article.  Once a new revision is saved, any
+    outstanding edits to the previous revision are not allowed to be
+    saved.  The author needs to manually apply their edits to the
+    most recent revision before their work can be saved.
+    \end{minipage}\hfill\begin{minipage}[b]{\myfigwidth}
+    \includegraphics[height=7.5cm]{revision-no-fork.eps}
+    \end{minipage}
 
+
+    Although new tools attempt to make the revision of conflicts
+    easier, they do not address the fundamental problem:
+    edits can't be saved unless they apply to the most recent
+    revision.
   }
+
+  \block{Fork-Merge Edit Model}{%
+    \begin{minipage}[b]{\mw}
+      With a fork-and-merge model, edits can always be saved, although
+      only edits to the most recent revision are immediately merged
+      and viewable.
+
+      New users whose content isn't immediately merged find it
+      preserved on their fork for revision and re-submission, reducing
+      their sense of rejection and loss.
+
+    \end{minipage}\hfill\begin{minipage}[b]{\myfigwidth}
+        \includegraphics[height=7.5cm]{revision-fork.eps}
+    \end{minipage}
+
+      Online edits can be auto-saved to a fork, and conflict
+      resolution safely deferred to a later session.
+      Offline users who are forced to work on an out-of-date copy
+      and those using the draft namespace can use the same
+      resolution tools when their contributions are brought to merge.
+  }
+
   \column{0.34}
   \block{Collaborative Edit Queues}{%
-With volunteer-run queues for merging contributions, we can incorporate contributions from offline editors or Tor users, or rescue conflicted edit attempts.
-
     \centering\includegraphics[height=10cm]{favourite-animal.png}
+
+    With volunteer-run queues for merging contributions, we can incorporate contributions from offline editors or Tor users, or rescue conflicted edit attempts.
+
 }
   \column{0.33}
   \block{Volunteer Communities}{%
@@ -95,11 +141,11 @@ well-connected to aid those with difficulties in the spirit of
 ubuntu. By increasing participation we can bridge the knowledge gap.
 
 \begin{tikzfigure}
-  \includegraphics[height=10cm]{world-kids-nobg.eps}
+  \includegraphics[height=12cm]{world-kids-nobg.eps}
 \end{tikzfigure}
 }
 \end{columns}
-\block{}{\centering\tiny
+\block{}{\centering\small
   \href{https://openclipart.org/detail/231887/conflict-silhouette}{conflict-silhouette}
     by \href{https://openclipart.org/user-detail/GDJ}{GDJ}
     / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0};
@@ -109,12 +155,16 @@ ubuntu. By increasing participation we can bridge the knowledge gap.
   \href{https://openclipart.org/detail/296265/censored-no-speaking}{censored-no-speaking}
     by \href{https://openclipart.org/user-detail/j4p4n}{j4p4n}
     / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0};
+  \href{https://openclipart.org/detail/101161/page-or-document}{page-or-document}
+    by \href{https://openclipart.org/user-detail/docguy}{docguy}
+    / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0};
+  \href{https://commons.wikimedia.org/wiki/File:Paragraph-based_prototype_\%E2\%80\%93_rough_visualization_of_the_functionality.png}{Edit conflict}
+    by \href{https://commons.wikimedia.org/wiki/User:Johanna_Strodt_(WMDE)}{Johanna\_Strodt\_(WMDE)}
+    / \href{https://creativecommons.org/licenses/by-sa/4.0/legalcode}{CC-SA};
   \href{https://openclipart.org/detail/228325/world-kids}{world-kids}
     by \href{https://openclipart.org/user-detail/GDJ}{GDJ}
     / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0}
     / Background removed;
-  \href{https://commons.wikimedia.org/wiki/File:Paragraph-based_prototype_\%E2\%80\%93_rough_visualization_of_the_functionality.png}{Edit conflict}
-    by \href{https://commons.wikimedia.org/wiki/User:Johanna_Strodt_(WMDE)}{Johanna\_Strodt\_(WMDE)}
-    / \href{https://creativecommons.org/licenses/by-sa/4.0/legalcode}{CC-SA};
+    Created with \LaTeX and TikZposter.
 }
 \end{document}
