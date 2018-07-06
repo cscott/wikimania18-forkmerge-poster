@@ -79,7 +79,7 @@
     using Tor, but in a catch-22 they then lose the ability to make
     contributions.
 
-    (Read more: \url{http://andreaforte.net/ForteCSCW17-Anonymity.pdf})
+    \hfill(Read~more:~\url{http://andreaforte.net/ForteCSCW17-Anonymity.pdf})
   }
 \end{columns}
 \block{}{\centering\Huge\it Oh, my!}
@@ -129,21 +129,48 @@
       Offline users who are forced to work on an out-of-date copy
       and those using the draft namespace can use the same
       resolution tools when their contributions are brought to merge.
-  }
+      \hfill(More:~\url{https://phabricator.wikimedia.org/T113004})
+    }
 
   \column{0.34}
+  \setlength{\myfigwidth}{18cm}
+  \setlength{\mw}{\colwidth}
+  \addtolength{\mw}{-4cm}
+  \addtolength{\mw}{-\myfigwidth}
   \block{Collaborative Edit Queues}{%
+
+    Although the vast majority of edits which can be applied without
+    conflict or controversy would be merged immediately and
+    automatically, forks could be created manually or (when conflicts
+    arise) automatically.  Merging forks (and resolving any
+    conflicts) can be done as a separate process, at a later time, and
+    by anyone at all---not solely the original author of the edit!
+
+    \begin{center}\textbf{Resolution can be done collaboratively
+    by the community.}\end{center}
+
+    \vspace{0.5cm}
+  \begin{minipage}{\mw}
+    Tools for merging conflicted edits can be built in a general
+    fashion, not tightly tied to a particular edit tool.
+    Forks are reachable from the main article, and volunteers can
+    resolve/merge these forks.
+  \end{minipage}\hfill\begin{minipage}{\myfigwidth}
+    \includegraphics[height=6.5cm]{favourite-animal.png}
+  \end{minipage}
+    \vspace{0.75cm}
+
+    We have built a proof-of-concept
+    for readers browsing via Tor, which lets them save their
+    edits into a ``Suggestion Queue'' for later merge.
+
     \begin{tikzfigure}
-      \includegraphics[height=10cm]{favourite-animal.png}
-    \end{tikzfigure}
-
-
-
-    \begin{tikzfigure}
-    \includegraphics[height=10cm]{pending-edits.png}%
-    \hspace{1cm}%
-    \includegraphics[height=10cm]{diff.png}\\[10pt]
-    {\small Prototype collaborative queue for edits from
+    \includegraphics[height=9.1cm]{pending-edits.png}%
+    \hspace{3cm}%
+    \includegraphics[height=9.1cm]{diff.png}%
+    \\[10pt]
+    {\small
+      Collaborative queue for edits from
       Tor: \url{https://www.mediawiki.org/wiki/Suggestor}}
     \end{tikzfigure}
 }
@@ -174,6 +201,7 @@
 }
 \end{columns}
 \block{}{\centering\small
+  Created with \LaTeX\ and TikZposter.
   \href{https://openclipart.org/detail/231887/conflict-silhouette}{conflict-silhouette}
     by \href{https://openclipart.org/user-detail/GDJ}{GDJ}
     / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0};
@@ -192,7 +220,6 @@
   \href{https://openclipart.org/detail/228325/world-kids}{world-kids}
     by \href{https://openclipart.org/user-detail/GDJ}{GDJ}
     / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0}
-    / Background removed;
-    Created with \LaTeX\ and TikZposter.
+    / Background removed.
 }
 \end{document}
