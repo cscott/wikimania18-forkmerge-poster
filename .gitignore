@@ -1,0 +1,5 @@
+poster.pdf
+*.aux
+*.log
+*.out
+*-converted-to.pdf
