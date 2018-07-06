@@ -1,10 +1,15 @@
 \documentclass[25pt, a0paper, landscape, cmyk]{tikzposter}
-\usepackage{hyperref}
-\usepackage{floatflt}
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+%\usepackage{floatflt}
 \tikzposterlatexaffectionproofoff
 \title{Edit Conflicts, Offline Contributions, and Tor: Oh, My!}
-\author{C. Scott Ananian \texttt{[[User:cscott]]}
-  <cananian@wikimedia.org> (Wikimedia Foundation)}
+\author{%
+  C. Scott Ananian %\texttt{[[User:cscott]]}
+  <cananian@wikimedia.org> and
+  Arlo Breault %\texttt{[[User:Arlolra]]}
+  <abreault@wikimedia.org>,
+  Wikimedia Foundation
+}
 %\institute{Wikimedia Foundation}
 %\usetheme{Autumn}\usecolorstyle[colorPalette=BrownBlueOrange]{Britain}
 %\usetheme{Envelope}
@@ -23,7 +28,7 @@
 \def\HyperFirstAtBeginDocument#1{#1}
 % another workaround, sigh.  This time for floatflt
 \edef\oldeverypar{\the\everypar}
-\begin{document}\maketitle[width=75cm]%[titletextscale=1,width=75cm]
+\begin{document}\maketitle[width=90cm]%[titletextscale=1,width=75cm]
 \begin{columns}
   \column{0.33}
   \block{Editing Conflicts}{%
@@ -67,13 +72,14 @@
   \block{Tor!}{%
 
     \begin{tikzfigure}
-      \includegraphics[height=17cm]{censored-nospeaking.eps}
+      \includegraphics[height=15.65cm]{censored-nospeaking.eps}
     \end{tikzfigure}
 
     A user in a repressive regime can only safely access Wikipedia by
     using Tor, but in a catch-22 they then lose the ability to make
     contributions.
 
+    (Read more: \url{http://andreaforte.net/ForteCSCW17-Anonymity.pdf})
   }
 \end{columns}
 \block{}{\centering\Huge\it Oh, my!}
@@ -127,21 +133,43 @@
 
   \column{0.34}
   \block{Collaborative Edit Queues}{%
-    \centering\includegraphics[height=10cm]{favourite-animal.png}
+    \begin{tikzfigure}
+      \includegraphics[height=10cm]{favourite-animal.png}
+    \end{tikzfigure}
 
-    With volunteer-run queues for merging contributions, we can incorporate contributions from offline editors or Tor users, or rescue conflicted edit attempts.
 
+
+    \begin{tikzfigure}
+    \includegraphics[height=10cm]{pending-edits.png}%
+    \hspace{1cm}%
+    \includegraphics[height=10cm]{diff.png}\\[10pt]
+    {\small Prototype collaborative queue for edits from
+      Tor: \url{https://www.mediawiki.org/wiki/Suggestor}}
+    \end{tikzfigure}
 }
   \column{0.33}
   \block{Volunteer Communities}{%
-  We then can collect edits from more diverse and less-connected users
-and provide a friendlier first-edit experience to retain
-newcomers. Volunteer merge queues provide another means for those
-well-connected to aid those with difficulties in the spirit of
-ubuntu. By increasing participation we can bridge the knowledge gap.
+
+    Queues for merging contributions can be organized by volunteers
+    according to interest group, and communities built.  Some examples:
+    \begin{itemize}
+    \item Unmerged edits by new editors
+    \item Edits from Turkey/Syria/\ldots via Tor
+    \item Edits from offline schoolkids in Peru/Ethiopia/\ldots
+    \item Abandoned edit conflicts from articles on your watchlist
+    \item Allies volunteering to be the public face of merges from
+      harassed groups
+    \end{itemize}
+
+    We then can collect edits from more diverse and less-connected
+    users and provide a friendlier first-edit experience to retain
+    newcomers. Volunteer merge queues provide another means for those
+    well-connected to aid those with difficulties in the spirit of
+    \textit{ubuntu}. By increasing participation we can bridge the knowledge
+    gap.
 
 \begin{tikzfigure}
-  \includegraphics[height=12cm]{world-kids-nobg.eps}
+  \includegraphics[height=14.5cm]{world-kids-nobg.eps}
 \end{tikzfigure}
 }
 \end{columns}
@@ -165,6 +193,6 @@ ubuntu. By increasing participation we can bridge the knowledge gap.
     by \href{https://openclipart.org/user-detail/GDJ}{GDJ}
     / \href{http://creativecommons.org/publicdomain/zero/1.0/}{CC0}
     / Background removed;
-    Created with \LaTeX and TikZposter.
+    Created with \LaTeX\ and TikZposter.
 }
 \end{document}
