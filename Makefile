@@ -1,4 +1,4 @@
 poster.pdf: poster.tex
-	pdflatex $<
+	xelatex $<
 clean:
 	$(RM) poster.pdf poster.aux poster.log poster.out *-converted-to.pdf

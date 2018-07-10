@@ -1,6 +1,10 @@
 \documentclass[25pt, a0paper, landscape, cmyk]{tikzposter}
+% Fontspec changes the metrics slightly (!)
+%\usepackage{fontspec}%\setsansfont{Montserrat Black}
+% Use a simpler package instead
+\input font-change-xetex
+\mysanzfont{Montserrat Black}{28}{letterspace=6}
 \usepackage[colorlinks,allcolors=blue]{hyperref}
-%\usepackage{floatflt}
 \tikzposterlatexaffectionproofoff
 \title{Edit Conflicts, Offline Contributions, and Tor: Oh My!}
 \author{%
@@ -10,18 +14,104 @@
   <abreault@wikimedia.org>,
   Wikimedia Foundation
 }
-%\institute{Wikimedia Foundation}
-%\usetheme{Autumn}\usecolorstyle[colorPalette=BrownBlueOrange]{Britain}
-%\usetheme{Envelope}
-\usetheme{Rays}\usecolorstyle[colorOne=orange,colorTwo=green]{Australia}
+\definecolorpalette{Wikimania2018}{
+  % Red: 213 0 0 = D50000
+  % Yellow: 255 193 7 = FFC107
+  % Green: 0 174 66 = 00AE42
+  \definecolor{colorOne}{HTML}{000000} % Black
+  \definecolor{colorTwo}{HTML}{00AE42} % Green
+  \definecolor{colorThree}{HTML}{D50000} % Red
+  \definecolor{colorFour}{HTML}{FFC107} % Yellow
+}
+\definecolorstyle{CapeTown}{
+  \definecolor{colorOne}{HTML}{FFC107}
+  \definecolor{colorTwo}{HTML}{00AE42}
+  \definecolor{colorThree}{HTML}{D50000}
+}{  % Background Colors
+    \colorlet{backgroundcolor}{colorOne}
+    \colorlet{framecolor}{colorThree}
+    % Title Colors
+    \colorlet{titlefgcolor}{black}
+    \colorlet{titlebgcolor}{white}
+    % Block Colors
+    \colorlet{blocktitlebgcolor}{colorTwo}
+    \colorlet{blocktitlefgcolor}{white}
+    \colorlet{blockbodybgcolor}{white}
+    \colorlet{blockbodyfgcolor}{black}
+    % Innerblock Colors
+    \colorlet{innerblocktitlebgcolor}{colorFour}
+    \colorlet{innerblocktitlefgcolor}{black}
+    \colorlet{innerblockbodybgcolor}{white}
+    \colorlet{innerblockbodyfgcolor}{black}
+    % Note colors
+    \colorlet{notefgcolor}{black}
+    \colorlet{notebgcolor}{colorThree}
+    \colorlet{notefrcolor}{colorThree}
+}
+\definecolorstyle{CapeTown2}{
+  \definecolor{colorOne}{HTML}{FFC107}
+  \definecolor{colorTwo}{HTML}{00AE42}
+  \definecolor{colorThree}{HTML}{D50000}
+}{  % Background Colors
+    \colorlet{backgroundcolor}{colorTwo}
+    \colorlet{framecolor}{colorThree}
+    % Title Colors
+    \colorlet{titlefgcolor}{black}
+    \colorlet{titlebgcolor}{white}
+    % Block Colors
+    \colorlet{blocktitlebgcolor}{colorOne}
+    \colorlet{blocktitlefgcolor}{colorFour}
+    \colorlet{blockbodybgcolor}{white}
+    \colorlet{blockbodyfgcolor}{black}
+    % Innerblock Colors
+    \colorlet{innerblocktitlebgcolor}{colorFour}
+    \colorlet{innerblocktitlefgcolor}{black}
+    \colorlet{innerblockbodybgcolor}{white}
+    \colorlet{innerblockbodyfgcolor}{black}
+    % Note colors
+    \colorlet{notefgcolor}{black}
+    \colorlet{notebgcolor}{colorThree}
+    \colorlet{notefrcolor}{colorThree}
+}
+\definecolorstyle{CapeTown3}{
+  \definecolor{colorOne}{HTML}{FFC107}
+  \definecolor{colorTwo}{HTML}{00AE42}
+  \definecolor{colorThree}{HTML}{D50000}
+}{  % Background Colors
+    \colorlet{backgroundcolor}{colorFour}
+    \colorlet{framecolor}{colorThree}
+    % Title Colors
+    \colorlet{titlefgcolor}{black}
+    \colorlet{titlebgcolor}{white}
+    % Block Colors
+    \colorlet{blocktitlebgcolor}{colorOne}
+    \colorlet{blocktitlefgcolor}{colorFour}
+    \colorlet{blockbodybgcolor}{white}
+    \colorlet{blockbodyfgcolor}{black}
+    % Innerblock Colors
+    \colorlet{innerblocktitlebgcolor}{colorFour}
+    \colorlet{innerblocktitlefgcolor}{black}
+    \colorlet{innerblockbodybgcolor}{white}
+    \colorlet{innerblockbodyfgcolor}{black}
+    % Note colors
+    \colorlet{notefgcolor}{black}
+    \colorlet{notebgcolor}{colorThree}
+    \colorlet{notefrcolor}{colorThree}
+}
+
+
+\usetheme{Default}
+\usecolorstyle[colorPalette=Wikimania2018]{CapeTown2}
 \useinnerblockstyle{Table}
+
 % remove space taken up by \institute
 \settitle{ \centering \vbox{
 \centering
-\color{titlefgcolor} {\bfseries \Huge \sc \@title \par}
+\color{titlefgcolor} {\sanstwentycaps \@title \par}
 \vspace*{1em}
 {\huge \@author}
 }}
+\newcommand{\myb}[1]{\sanssixteencaps #1}
 
 % Work around tikzposter conflict with hyperref
 % https://tex.stackexchange.com/questions/254257/tikzposter-and-doi-package-conflict
@@ -31,7 +121,7 @@
 \begin{document}\maketitle[width=90cm]%[titletextscale=1,width=75cm]
 \begin{columns}
   \column{0.33}
-  \block{Editing Conflicts}{%
+  \block{\myb{Editing Conflicts}}{%
 
     \begin{tikzfigure}
       \includegraphics[height=9.5cm]{conflict-silhouette.eps}
@@ -57,7 +147,7 @@
     immediate harassment.
   }
   \column{0.34}
-  \block{Offline Contributions}{%
+  \block{\myb{Offline Contributions}}{%
 
     \begin{tikzfigure}
       \includegraphics[height=17cm]{Bucolico-full.jpg}
@@ -69,7 +159,7 @@
 
   }
   \column{0.33}
-  \block{Tor!}{%
+  \block{\myb{Tor!}}{%
 
     \begin{tikzfigure}
       \includegraphics[height=15.65cm]{censored-nospeaking.eps}
@@ -92,7 +182,7 @@
   \addtolength{\mw}{-3cm}
   \addtolength{\mw}{-\myfigwidth}
 
-  \block{Linear Edit Model}{
+  \block{\myb{Linear Edit Model}}{
     \begin{minipage}[b]{\mw}
     In today's MediaWiki, edits are only made to the most recent
     revision of an article.  Once a new revision is saved, any
@@ -100,7 +190,7 @@
     saved.  The author needs to manually apply their edits to the
     most recent revision before their work can be saved.
     \end{minipage}\hfill\begin{minipage}[b]{\myfigwidth}
-    \includegraphics[height=7.5cm]{revision-no-fork.eps}
+    \includegraphics[height=7.6cm]{revision-no-fork.eps}
     \end{minipage}
 
     Although new tools attempt to make the revision of conflicts
@@ -109,7 +199,7 @@
     revision.
   }
 
-  \block{Fork-Merge Edit Model}{%
+  \block{\myb{Fork-Merge Edit Model}}{%
     \begin{minipage}[b]{\mw}
       With a fork-and-merge model, edits can always be saved, although
       only edits to the most recent revision are immediately merged
@@ -120,7 +210,7 @@
       their sense of rejection and loss.
 
     \end{minipage}\hfill\begin{minipage}[b]{\myfigwidth}
-        \includegraphics[height=7.5cm]{revision-fork.eps}
+        \includegraphics[height=7.6cm]{revision-fork.eps}
     \end{minipage}
 
       Online edits can be auto-saved to a fork, and conflict
@@ -136,7 +226,7 @@
   \setlength{\mw}{\colwidth}
   \addtolength{\mw}{-4cm}
   \addtolength{\mw}{-\myfigwidth}
-  \block{Collaborative Edit Queues}{%
+  \block{\myb{Collaborative Edit Queues}}{%
 
     Although the vast majority of edits which can be applied without
     conflict or controversy would be merged immediately and
@@ -174,7 +264,7 @@
     \end{tikzfigure}
 }
   \column{0.33}
-  \block{Volunteer Communities}{%
+  \block{\myb{Volunteer Communities}}{%
 
     Queues for merging contributions can be organized by volunteers
     according to interest group, and communities built.  Some examples:
@@ -195,7 +285,7 @@
     gap.
 
 \begin{tikzfigure}
-  \includegraphics[height=14.5cm]{world-kids-nobg.eps}
+  \includegraphics[height=14.45cm]{world-kids-nobg.eps}
 \end{tikzfigure}
 }
 \end{columns}
